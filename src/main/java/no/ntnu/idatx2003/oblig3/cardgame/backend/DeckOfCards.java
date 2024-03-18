@@ -1,35 +1,45 @@
 package no.ntnu.idatx2003.oblig3.cardgame.backend;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 /**
  * Represents a deck of cards. A deck of cards is a collection of playing cards.
  */
 public class DeckOfCards {
+  Iterator<PlayingCard> it;
   private ArrayList<PlayingCard> cards; // An array representing a deck of cards.
 
   /**
-   * Creates a new deck of cards, where the cards are ordered in a standard fashion.
-   * That is, the cards are ordered by suit (spades, hearts, diamonds and clubs) and
-   * by face value (from ace of spades, to king of clubs).
-   * The deck is then shuffled, so that the cards are placed in a random order.
+   * Constructs a new deck of cards.
    */
   public DeckOfCards(boolean shuffleOrNot) {
+    this.cards = new ArrayList<>();
+
+    resetCards();
+    if (shuffleOrNot) {
+      shuffle();
+    }
+    //cards.forEach(card -> System.out.println(card.getAsString())); was for testing purposes
+  }
+
+  /**
+   * Resets the deck of cards to its original state.
+   */
+  private void resetCards() {
+    cards.clear();
+
     final char[] suits = { 'S', 'H', 'D', 'C' }; // 'S'=spade, 'H'=heart, 'D'=diamonds, 'C'=clubs
     final int[] faces = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }; // 1=ace, 11=knight, 12=queen, 13=king
 
-    this.cards = new ArrayList<>();
     int i = 0;
     for (char suit : suits) {
       for (int face : faces) {
         this.cards.add(i++, new PlayingCard(suit, face));
       }
     }
-    if (shuffleOrNot) {
-      shuffle();
-    }
-    //cards.forEach(card -> System.out.println(card.getAsString())); was for testing purposes
   }
 
   /**
@@ -40,9 +50,23 @@ public class DeckOfCards {
    */
   public CardHand dealHand(int n) {
     CardHand hand = new CardHand();
-    for (int i = 0; i < n; i++) {
-      hand.addCard(cards.get(i));
+
+    if (n > cards.size()) {
+      resetCards();
+      shuffle();
     }
+
+    List<PlayingCard> toBeRemoved = new ArrayList<>();
+    it = cards.stream().limit(n).iterator();
+
+    while (it.hasNext()) {
+      PlayingCard card = it.next();
+
+      hand.addCard(card);
+      toBeRemoved.add(card);
+    }
+    cards.removeAll(toBeRemoved);
+
     return hand;
   }
 

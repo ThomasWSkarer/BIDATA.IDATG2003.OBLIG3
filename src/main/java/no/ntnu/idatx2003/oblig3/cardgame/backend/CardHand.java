@@ -73,7 +73,7 @@ public class CardHand {
    * @return true if the hand is a flush, false otherwise.
    */
   public boolean checkIfFlush() {
-    return cards.stream().allMatch(card -> card.getSuit() == cards.get(0).getSuit());
+    return cards.stream().allMatch(c -> c.getSuit() == cards.get(0).getSuit());
   }
 
   /**
@@ -82,8 +82,8 @@ public class CardHand {
    * @param card the card to check for.
    * @return true if the card is in the hand, false otherwise.
    */
-  public boolean checkIfCardInHand(PlayingCard card) {
-    return cards.contains(card);
+  public boolean checkIfCardInHand(String card) {
+    return cards.stream().anyMatch(c -> c.getAsString().equals(card));
   }
 
   /**

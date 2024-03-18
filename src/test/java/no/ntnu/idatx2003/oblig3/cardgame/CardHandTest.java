@@ -36,9 +36,9 @@ class CardHandTest {
 
   @Test
   void getCardsTest() {
-    assertTrue(controlledHand.checkIfCardInHand(S8) && controlledHand.checkIfCardInHand(H12)
-        && controlledHand.checkIfCardInHand(D3),
-        "The hand should include" + S8.getAsString() + ", " + H12.getAsString() + " and "
+    assertTrue(controlledHand.checkIfCardInHand("S8")
+            && controlledHand.checkIfCardInHand("H12") && controlledHand.checkIfCardInHand("D3"),
+        "The hand should include " + S8.getAsString() + ", " + H12.getAsString() + " and "
             + D3.getAsString() + ", but it does not");
   }
 
@@ -46,9 +46,10 @@ class CardHandTest {
   void addCard() {
     PlayingCard testCard = new PlayingCard('S', 12);
     controlledHand.addCard(testCard);
-    assertTrue(controlledHand.checkIfCardInHand(testCard) && controlledHand.getHandSize() == 4,
+    assertTrue(controlledHand.checkIfCardInHand(testCard.getAsString())
+            && controlledHand.getHandSize() == 4,
         "the card " + testCard.getAsString() + "should be in the hand, but it is not"
-    + "and the hand size should be 6, but it is " + controlledHand.getHandSize());
+            + "and the hand size should be 6, but it is " + controlledHand.getHandSize());
   }
 
   @Test
@@ -87,7 +88,7 @@ class CardHandTest {
 
   @Test
   void checkIfCardInHand() {
-    assertTrue(controlledHand.checkIfCardInHand(S8),
+    assertTrue(controlledHand.checkIfCardInHand("S8"),
         "The hand should include " + S8.getAsString() + ", but it does not");
   }
 
