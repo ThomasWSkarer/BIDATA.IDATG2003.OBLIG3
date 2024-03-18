@@ -1,9 +1,10 @@
 package no.ntnu.idatx2003.oblig3.cardgame.backend;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class DeckOfCards {
-  private PlayingCard[] cards;
+  private ArrayList<PlayingCard> cards;
 
   /**
    * Creates a new deck of cards, where the cards are ordered in a standard fashion.
@@ -11,18 +12,21 @@ public class DeckOfCards {
    * by face value (from ace of spades, to king of clubs).
    * The deck is then shuffled, so that the cards are placed in a random order.
    */
-  public DeckOfCards() {
+  public DeckOfCards(boolean shuffleOrNot) {
     final char[] suits = { 'S', 'H', 'D', 'C' }; // 'S'=spade, 'H'=heart, 'D'=diamonds, 'C'=clubs
     final int[] faces = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }; // 1=ace, 11=knight, 12=queen, 13=king
 
-    cards = new PlayingCard[52];
+    this.cards = new ArrayList<>();
     int i = 0;
     for (char suit : suits) {
       for (int face : faces) {
-        cards[i++] = new PlayingCard(suit, face);
+        this.cards.add(i++, new PlayingCard(suit, face));
       }
     }
-    shuffle();
+    if (shuffleOrNot) {
+      shuffle();
+    }
+    //cards.forEach(card -> System.out.println(card.getAsString())); was for testing purposes
   }
 
   /**
@@ -34,7 +38,7 @@ public class DeckOfCards {
   public CardHand dealHand(int n) {
     CardHand hand = new CardHand();
     for (int i = 0; i < n; i++) {
-      hand.addCard(cards[i]);
+      hand.addCard(cards.get(i));
     }
     return hand;
   }
@@ -42,25 +46,26 @@ public class DeckOfCards {
   /**
    * Shuffles the deck of cards, done using random.
    */
-  private void shuffle() {
+  public void shuffle() {
     Random random = new Random();
+    for (int i = 0; i < cards.size(); i++) {
 
-    int[] randos = random.ints(52).toArray();
-    for (int i = 0; i < randos.length; i++) {
-      swapCardPositions(i, randos[i]);
+      int randomIndex = random.nextInt(cards.size());
+      swapCardPositions(i, randomIndex);
     }
   }
 
   /**
    * Swaps the positions of two cards in the deck.
    *
-   * @param i the position of the first card
-   * @param j the position of the second card
+   * @param posA the position of the first card
+   * @param posB the position of the second card
    */
-  private void swapCardPositions(int i, int j) {
-    PlayingCard temp = cards[i];
-    cards[i] = cards[j];
-    cards[j] = temp;
+  private void swapCardPositions(int posA, int posB) {
+    PlayingCard cardA = cards.get(posA);
+    PlayingCard cardB = cards.get(posB);
+    cards.set(posA, cardB);
+    cards.set(posB, cardA);
   }
 
 }

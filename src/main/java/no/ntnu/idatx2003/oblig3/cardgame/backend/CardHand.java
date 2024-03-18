@@ -1,24 +1,17 @@
 package no.ntnu.idatx2003.oblig3.cardgame.backend;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CardHand {
-  private List<PlayingCard> cards; // A list including the cards in the hand
+  private ArrayList<PlayingCard> cards; // A list including the cards in the hand
 
   /**
    * Creates a new hand of cards. This is the default constructor.
    */
   public CardHand() {
-    this.cards = List.of();
-  }
-
-  /**
-   * Creates a new hand of cards.
-   *
-   * @param cards the cards in the hand.
-   */
-  public CardHand(PlayingCard[] cards) {
-    this.cards = List.of(cards);
+    this.cards = new ArrayList<>();
   }
 
   /**
@@ -26,7 +19,7 @@ public class CardHand {
    *
    * @return the cards in the hand.
    */
-  private List<PlayingCard> getCards() {
+  public List<PlayingCard> getCards() {
     return cards;
   }
 
