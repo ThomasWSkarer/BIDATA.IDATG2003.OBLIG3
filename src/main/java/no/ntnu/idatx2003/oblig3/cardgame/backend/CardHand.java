@@ -3,6 +3,9 @@ package no.ntnu.idatx2003.oblig3.cardgame.backend;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a hand of cards. A hand of cards is a collection of playing cards.
+ */
 public class CardHand {
   private ArrayList<PlayingCard> cards; // A list including the cards in the hand
 

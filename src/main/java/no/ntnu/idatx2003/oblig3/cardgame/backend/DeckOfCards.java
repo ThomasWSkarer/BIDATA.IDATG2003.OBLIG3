@@ -3,8 +3,11 @@ package no.ntnu.idatx2003.oblig3.cardgame.backend;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Represents a deck of cards. A deck of cards is a collection of playing cards.
+ */
 public class DeckOfCards {
-  private ArrayList<PlayingCard> cards;
+  private ArrayList<PlayingCard> cards; // An array representing a deck of cards.
 
   /**
    * Creates a new deck of cards, where the cards are ordered in a standard fashion.
