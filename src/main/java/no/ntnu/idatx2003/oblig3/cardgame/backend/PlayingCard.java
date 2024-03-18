@@ -1,4 +1,4 @@
-package no.ntnu.idatx2003.oblig3.cardgame;
+package no.ntnu.idatx2003.oblig3.cardgame.backend;
 
 /**
  * Represents a playing card. A playing card has a number (face) between
@@ -88,8 +88,4 @@ public class PlayingCard {
     return hash;
   }
 
-  public static void main(String[] args) {
-    PlayingCard card = new PlayingCard('H', 4);
-    System.out.println(card.getAsString());
-  }
 }
