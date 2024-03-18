@@ -1,7 +1,8 @@
-package no.ntnu.idatx2003.oblig3.cardgame.backend;
+package no.ntnu.idatx2003.oblig3.cardgame;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import no.ntnu.idatx2003.oblig3.cardgame.backend.PlayingCard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

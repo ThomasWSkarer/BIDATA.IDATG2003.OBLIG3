@@ -1,6 +1,5 @@
 package no.ntnu.idatx2003.oblig3.cardgame.backend;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
