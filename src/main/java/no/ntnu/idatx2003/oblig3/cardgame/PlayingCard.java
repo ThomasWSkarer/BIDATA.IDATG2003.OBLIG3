@@ -87,4 +87,9 @@ public class PlayingCard {
     hash = 31 * hash + getFace();
     return hash;
   }
+
+  public static void main(String[] args) {
+    PlayingCard card = new PlayingCard('H', 4);
+    System.out.println(card.getAsString());
+  }
 }
